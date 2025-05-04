@@ -1,0 +1,19 @@
+.root {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  > li {
+    width: 50%;
+    aspect-ratio: 1;
+    position: relative;
+    overflow: hidden;
+  }
+
+  @media (min-width: 600px) {
+    > li {
+      width: 25%;
+    }
+  }
+}
