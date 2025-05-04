@@ -10,6 +10,7 @@ import { slider } from './components/animations/sliders';
 import { LinearExample } from './components/examples/linear-example';
 import { RandomExample } from './components/examples/random-example';
 import { WaveExample } from './components/examples/waver-example';
+import { MosaicExample } from './components/examples/mosaic-example';
 
 const anims = {
   slider,
@@ -72,6 +73,8 @@ export default function Home() {
         {selectedFeeder === 'random' && (
           <RandomExample selectedAnim={anims[selectedAnim]} />
         )}
+
+        <MosaicExample />
       </div>
     </>
   );

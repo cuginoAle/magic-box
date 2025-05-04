@@ -32,6 +32,7 @@ const useLinear = ({
 
     firstRun.current = false;
   }, [content, showTileCount]);
+
   const delay =
     contentIndex.current === 0 && !firstRun.current
       ? delayBeforeNextLoop

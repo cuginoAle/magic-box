@@ -1,0 +1,21 @@
+.img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+
+  .img {
+    position: absolute;
+    width: calc(100% * var(--cols));
+    height: calc(100% * var(--rows));
+    top: calc(-100% * calc(var(--position-row)));
+    left: calc(-100% * calc(var(--position-col)));
+  }
+}
