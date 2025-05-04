@@ -19,22 +19,17 @@ const timing = {
 
 const tarzan: AnimType = (refs) => {
   const animation: Animation[] = [];
-  if (refs.length === 1) {
-    if (refs?.[0]) {
-      refs[0].style.transformOrigin = '0 0';
-      animation.push(refs[0].animate(tarzan_in, timing));
-    }
-  } else {
-    if (refs?.[1]) {
-      refs[1].style.transformOrigin = '100% 0';
-      animation.push(refs[1].animate(tarzan_out, timing));
-    }
 
-    if (refs?.[0]) {
-      refs[0].style.transformOrigin = '0 0';
-      animation.push(refs[0].animate(tarzan_in, timing));
-    }
+  if (refs?.[1]) {
+    refs[1].style.transformOrigin = '100% 0';
+    animation.push(refs[1].animate(tarzan_out, timing));
   }
+
+  if (refs?.[0]) {
+    refs[0].style.transformOrigin = '0 0';
+    animation.push(refs[0].animate(tarzan_in, timing));
+  }
+
   return animation;
 };
 

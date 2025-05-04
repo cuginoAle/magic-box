@@ -27,12 +27,6 @@ const slider_out_timing = {
 const slider: AnimType = (refs) => {
   const animation: Animation[] = [];
 
-  // if (refs.length === 1) {
-  //   if (refs?.[0]) {
-  //     refs[0].style.transformOrigin = '50%';
-  //     animation.push(refs[0].animate(slider_in, slider_in_timing));
-  //   }
-  // } else {
   if (refs?.[1]) {
     refs[1].style.transformOrigin = '50%';
     animation.push(refs[1].animate(slider_out, slider_out_timing));
@@ -42,7 +36,6 @@ const slider: AnimType = (refs) => {
     refs[0].style.transformOrigin = '50%';
     animation.push(refs[0].animate(slider_in, slider_in_timing));
   }
-  // }
 
   return animation;
 };

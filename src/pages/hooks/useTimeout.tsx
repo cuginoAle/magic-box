@@ -1,6 +1,9 @@
 import { useCallback, useEffect, useMemo, useRef } from 'react';
 
-const useTimeout = (fn: () => void, delay: number) => {
+type TimeoutType = {
+  clear: () => void;
+};
+const useTimeout = (fn: () => void, delay: number): TimeoutType => {
   const startRef = useRef<number>(Date.now());
   const hndRef = useRef<number>(null);
 
@@ -30,3 +33,5 @@ const useTimeout = (fn: () => void, delay: number) => {
   );
 };
 export { useTimeout };
+
+export type { TimeoutType };

@@ -29,7 +29,7 @@ const useInterval = (
     return () => {
       if (hndRef.current) cancelAnimationFrame(hndRef.current);
     };
-  }, [loop]);
+  }, [delay, loop]);
 
   const pause = useCallback(() => {
     paused.current = true;

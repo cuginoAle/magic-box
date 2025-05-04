@@ -9,18 +9,18 @@ const useLinear = ({
   showTileCount,
   interval,
   autoStart,
-  delayBeforeNextLoop,
+  delayBeforeNextLoop = interval,
 }: FeederProps): FeederType => {
   const contentIndex = useRef(0);
   const cursor = useRef(showTileCount);
   const firstRun = useRef(true);
 
-  const [tiles, setTile] = useState<ContentProps[]>(
+  const [tiles, setTiles] = useState<ContentProps[]>(
     content.slice(0, showTileCount),
   );
 
   const tick = useCallback(() => {
-    setTile((prevTiles) => {
+    setTiles((prevTiles) => {
       prevTiles.splice(contentIndex.current, 1, content[cursor.current]);
       return [...prevTiles];
     });
@@ -32,13 +32,12 @@ const useLinear = ({
 
     firstRun.current = false;
   }, [content, showTileCount]);
+  const delay =
+    contentIndex.current === 0 && !firstRun.current
+      ? delayBeforeNextLoop
+      : interval;
 
-  const feeder = useInterval(tick, interval, autoStart);
-
-  if (contentIndex.current === 0 && !firstRun.current) {
-    feeder.pause();
-    setTimeout(feeder.play, delayBeforeNextLoop); // <== this does not get paused !!!!!
-  }
+  const feeder = useInterval(tick, delay, autoStart);
 
   return { tiles, feeder };
 };
