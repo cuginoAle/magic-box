@@ -34,7 +34,10 @@ const AnimatedTile = ({ children, animation, tileId }: TileProps) => {
     childrenStackRef.current.length > 2 ? 2 : childrenStackRef.current.length;
 
   const onAnimationEnd = useCallback(() => {
-    setRemovePrevItem(true);
+    if (shouldAnimate.current) {
+      setRemovePrevItem(true);
+      shouldAnimate.current = false;
+    }
   }, []);
 
   useLayoutEffect(() => {

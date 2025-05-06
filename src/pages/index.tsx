@@ -1,27 +1,27 @@
 import Head from 'next/head';
 
-import { tarzan } from './components/animations/tarzan';
+import { MosaicExample } from 'src/components/examples/mosaic-example';
 
-import { feederOptions, FeedersKey } from './hooks/feeders/feeder-options';
-import './styles.css';
+// import { tarzan } from '../components/animations/tarzan';
 
-import { useState } from 'react';
-import { slider } from './components/animations/sliders';
-import { LinearExample } from './components/examples/linear-example';
-import { RandomExample } from './components/examples/random-example';
-import { WaveExample } from './components/examples/waver-example';
-import { MosaicExample } from './components/examples/mosaic-example';
+// import { feederOptions, FeedersKey } from '../hooks/feeders/feeder-options';
 
-const anims = {
-  slider,
-  tarzan,
-};
+// import { useEffect, useState } from 'react';
+// import { slider } from '../components/animations/sliders';
+// import { LinearExample } from '../components/examples/linear-example';
+// import { RandomExample } from '../components/examples/random-example';
+// import { WaveExample } from '../components/examples/waver-example';
 
-type AnimsKeys = keyof typeof anims;
+// const anims = {
+//   slider,
+//   tarzan,
+// };
+
+// type AnimsKeys = keyof typeof anims;
 
 export default function Home() {
-  const [selectedFeeder, setSelectedFeeder] = useState<FeedersKey>('linear');
-  const [selectedAnim, setSelectedAnim] = useState<AnimsKeys>('slider');
+  // const [selectedFeeder, setSelectedFeeder] = useState<FeedersKey>('linear');
+  // const [selectedAnim, setSelectedAnim] = useState<AnimsKeys>('slider');
 
   return (
     <>
@@ -32,7 +32,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="App">
-        {(Object.keys(feederOptions) as FeedersKey[]).map((f) => (
+        {/* {(Object.keys(feederOptions) as FeedersKey[]).map((f) => (
           <label key={f}>
             {f}
             <input
@@ -61,8 +61,8 @@ export default function Home() {
               }}
             />
           </label>
-        ))}
-        <h2>Slider - randomFeeder</h2>
+        ))} */}
+        {/* <h2>Slider - randomFeeder</h2>
         {selectedFeeder === 'wave' && (
           <WaveExample selectedAnim={anims[selectedAnim]} />
         )}
@@ -72,7 +72,7 @@ export default function Home() {
 
         {selectedFeeder === 'random' && (
           <RandomExample selectedAnim={anims[selectedAnim]} />
-        )}
+        )} */}
 
         <MosaicExample />
       </div>

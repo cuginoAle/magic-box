@@ -1,19 +1,20 @@
-import { useLinear } from 'src/pages/hooks/feeders/useLinear';
-import { feederOptions } from 'src/pages/hooks/feeders/feeder-options';
+import { feederOptions } from 'src/hooks/feeders/feeder-options';
 import { AnimatedTile } from '../animated-tile/animated-tile';
 import { TileGrid } from '../tile-grid/tile-grid';
 import { AnimType } from '../animations/types';
 
-const LinearExample = ({ selectedAnim }: { selectedAnim: AnimType }) => {
+import { useLinear } from 'src/hooks/feeders/useLinear';
+
+const WaveExample = ({ selectedAnim }: { selectedAnim: AnimType }) => {
   const { tiles, feeder } = useLinear({
-    ...feederOptions.linear,
+    ...feederOptions.wave,
     autoStart: true,
   });
 
   return (
     <TileGrid
       onMouseEnter={() => {
-        feeder.pause();
+        feeder.clear();
       }}
       onMouseLeave={() => {
         feeder.play();
@@ -30,4 +31,4 @@ const LinearExample = ({ selectedAnim }: { selectedAnim: AnimType }) => {
   );
 };
 
-export { LinearExample };
+export { WaveExample };

@@ -1,19 +1,19 @@
-import { useRandom } from 'src/pages/hooks/feeders/useRandom';
-import { feederOptions } from 'src/pages/hooks/feeders/feeder-options';
+import { useLinear } from 'src/hooks/feeders/useLinear';
+import { feederOptions } from 'src/hooks/feeders/feeder-options';
 import { AnimatedTile } from '../animated-tile/animated-tile';
-import { AnimType } from '../animations/types';
 import { TileGrid } from '../tile-grid/tile-grid';
+import { AnimType } from '../animations/types';
 
-const RandomExample = ({ selectedAnim }: { selectedAnim: AnimType }) => {
-  const { tiles, feeder } = useRandom({
-    ...feederOptions.random,
+const LinearExample = ({ selectedAnim }: { selectedAnim: AnimType }) => {
+  const { tiles, feeder } = useLinear({
+    ...feederOptions.linear,
     autoStart: true,
   });
 
   return (
     <TileGrid
       onMouseEnter={() => {
-        feeder.pause();
+        feeder.clear();
       }}
       onMouseLeave={() => {
         feeder.play();
@@ -30,4 +30,4 @@ const RandomExample = ({ selectedAnim }: { selectedAnim: AnimType }) => {
   );
 };
 
-export { RandomExample };
+export { LinearExample };
