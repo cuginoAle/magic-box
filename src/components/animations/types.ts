@@ -1,3 +1,3 @@
-type AnimType = (refs: HTMLDivElement[]) => Animation[];
+type AnimType = (refs: HTMLDivElement[], delay?: number) => Animation[];
 
 export type { AnimType };

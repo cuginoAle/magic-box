@@ -17,17 +17,17 @@ const timing = {
   fill: 'forwards' as FillMode,
 };
 
-const tarzan: AnimType = (refs) => {
+const tarzan: AnimType = (refs, delay = 0) => {
   const animation: Animation[] = [];
 
   if (refs?.[1]) {
     refs[1].style.transformOrigin = '100% 0';
-    animation.push(refs[1].animate(tarzan_out, timing));
+    animation.push(refs[1].animate(tarzan_out, { ...timing, delay }));
   }
 
   if (refs?.[0]) {
     refs[0].style.transformOrigin = '0 0';
-    animation.push(refs[0].animate(tarzan_in, timing));
+    animation.push(refs[0].animate(tarzan_in, { ...timing, delay }));
   }
 
   return animation;

@@ -1,5 +1,4 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-
 import {
   ReactElement,
   useCallback,
@@ -8,14 +7,21 @@ import {
   useState,
 } from 'react';
 import styles from './styles.module.css';
+import { AnimType } from '../animations/types';
 
 type TileProps = {
   children: ReactElement;
-  animation?: (nodes: HTMLDivElement[]) => Animation[];
+  animation?: AnimType;
   tileId: string;
+  delay?: number;
 };
 
-const AnimatedTile = ({ children, animation, tileId }: TileProps) => {
+const AnimatedTile = ({
+  children,
+  animation,
+  tileId,
+  delay = 0,
+}: TileProps) => {
   const [removePrevItem, setRemovePrevItem] = useState(false);
 
   const ref1 = useRef<HTMLDivElement>(null);
@@ -49,6 +55,7 @@ const AnimatedTile = ({ children, animation, tileId }: TileProps) => {
             0,
             childrenStackRef.current.length,
           ),
+          delay,
         ) || [];
 
       if (anim[0]) anim[0].onfinish = onAnimationEnd;
