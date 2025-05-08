@@ -3,13 +3,13 @@ import { AnimType } from './types';
 const duration = 1000;
 
 const tarzan_in = [
-  { transform: 'rotate(90deg) translateX(0)', opacity: 1 },
-  { transform: 'rotate(0deg)' },
+  { transform: 'rotate(90deg)', transformOrigin: '0 0' },
+  { transform: 'rotate(0deg)', transformOrigin: '0 0' },
 ];
 
 const tarzan_out = [
-  { transform: 'rotate(0deg) translateX(0)', opacity: 1 },
-  { transform: 'rotate(-90deg)' },
+  { transform: 'rotate(0deg)', transformOrigin: '100% 0' },
+  { transform: 'rotate(-90deg)', transformOrigin: '100% 0' },
 ];
 
 const timing = {
@@ -24,13 +24,13 @@ const tarzan: AnimType = (refs, delay = 0) => {
 
   if (refs?.[1]) {
     refs[1].style.transformOrigin = '100% 0';
-    refs[1].style.transform = 'rotate(0deg) translateX(0)';
+    refs[1].style.transform = 'rotate(0deg)';
     animation.push(refs[1].animate(tarzan_out, { ...timing, delay }));
   }
 
   if (refs?.[0]) {
     refs[0].style.transformOrigin = '0 0';
-    refs[0].style.transform = 'rotate(90deg) translateX(0)';
+    refs[0].style.transform = 'rotate(90deg)';
     animation.push(refs[0].animate(tarzan_in, { ...timing, delay }));
   }
 

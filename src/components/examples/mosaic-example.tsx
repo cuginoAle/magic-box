@@ -4,17 +4,20 @@ import { TileGrid } from '../tile-grid/tile-grid';
 
 import { AnimatedTile } from '../animated-tile/animated-tile';
 
-import { pictures } from 'src/data-stubs/content';
+import { steak } from 'src/data-stubs/content';
 
 import { useMemo } from 'react';
+// import { tarzan } from '../animations/tarzan';
+import { slider } from '../animations/sliders';
 import { tarzan } from '../animations/tarzan';
+import { fishEye } from '../animations/fish-eye';
 
 const MosaicExample = () => {
   const rows = 5;
   const cols = 5;
 
   const content = useMemo(() => {
-    return pictures
+    return steak
       .map((p) => {
         return [...Array(rows * cols)].map((_, index) => {
           const portion: Portion = {
@@ -27,7 +30,7 @@ const MosaicExample = () => {
           return (
             <Picture
               key={index}
-              src={p.replace('w=400', 'w=800')}
+              src={p.replace('w=400', 'w=600')}
               alt="img"
               portion={portion}
             />
@@ -44,7 +47,7 @@ const MosaicExample = () => {
   const options = useMemo(
     () => ({
       content: content,
-      interval: 3000,
+      interval: 4000,
       showTileCount: rows * cols,
     }),
     [content],
@@ -53,7 +56,15 @@ const MosaicExample = () => {
   const { tiles, feeder } = useLinear(options);
 
   return (
-    <div style={{ maxWidth: '400px' }}>
+    <div
+      style={{
+        maxWidth: '400px',
+        backgroundColor: '#ccc',
+        borderRadius: '0 5px 5px 0',
+        overflow: 'hidden',
+      }}
+      className="shadow"
+    >
       <TileGrid
         rows={rows}
         cols={cols}
@@ -67,7 +78,7 @@ const MosaicExample = () => {
         {tiles.map((p, index) => (
           <AnimatedTile
             key={index}
-            animation={tarzan}
+            animation={fishEye}
             delay={0 * index}
             tileId={p.id}
           >

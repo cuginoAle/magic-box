@@ -11,9 +11,9 @@ const slider_out = [
 ];
 
 const slider_in_timing = {
-  duration: 1000,
+  duration: 1500,
   iterations: 1,
-  easing: 'cubic-bezier(0.762, -0.014, 0.252, 0.988)',
+  easing: 'cubic-bezier(0.497, 0.41, 0.14, 1)',
   fill: 'forwards' as FillMode,
 };
 
