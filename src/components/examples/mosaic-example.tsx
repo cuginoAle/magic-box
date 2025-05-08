@@ -10,8 +10,8 @@ import { useMemo } from 'react';
 import { tarzan } from '../animations/tarzan';
 
 const MosaicExample = () => {
-  const rows = 10;
-  const cols = 10;
+  const rows = 5;
+  const cols = 5;
 
   const content = useMemo(() => {
     return pictures
@@ -44,7 +44,7 @@ const MosaicExample = () => {
   const options = useMemo(
     () => ({
       content: content,
-      interval: 2000,
+      interval: 3000,
       showTileCount: rows * cols,
     }),
     [content],
@@ -65,7 +65,12 @@ const MosaicExample = () => {
         }}
       >
         {tiles.map((p, index) => (
-          <AnimatedTile key={index} animation={tarzan} delay={0} tileId={p.id}>
+          <AnimatedTile
+            key={index}
+            animation={tarzan}
+            delay={0 * index}
+            tileId={p.id}
+          >
             {p.content}
           </AnimatedTile>
         ))}
