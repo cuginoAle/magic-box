@@ -13,8 +13,8 @@ import { tarzan } from '../animations/tarzan';
 import { fishEye } from '../animations/fish-eye';
 
 const MosaicExample = () => {
-  const rows = 5;
-  const cols = 5;
+  const rows = 10;
+  const cols = 10;
 
   const content = useMemo(() => {
     return steak
@@ -79,7 +79,7 @@ const MosaicExample = () => {
           <AnimatedTile
             key={index}
             animation={fishEye}
-            delay={0 * index}
+            delay={5 * index}
             tileId={p.id}
           >
             {p.content}

@@ -23,7 +23,7 @@ const AnimatedTile = ({
   delay = 0,
 }: TileProps) => {
   const [removePrevItem, setRemovePrevItem] = useState(false);
-
+  const prevAnims = useRef<Animation[]>([]);
   const ref1 = useRef<HTMLDivElement>(null);
   const ref2 = useRef<HTMLDivElement>(null);
   const childrenStackRef = useRef<ReactElement[]>([]);
@@ -48,6 +48,7 @@ const AnimatedTile = ({
 
   useLayoutEffect(() => {
     if (ref1.current && ref2.current && shouldAnimate.current) {
+      prevAnims.current.forEach((a) => a.cancel());
       setRemovePrevItem(false);
       const anim =
         animation?.(
@@ -57,6 +58,7 @@ const AnimatedTile = ({
           ),
           delay,
         ) || [];
+      prevAnims.current = anim;
 
       if (anim[0]) anim[0].onfinish = onAnimationEnd;
 
