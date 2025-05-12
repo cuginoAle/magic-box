@@ -1,28 +1,7 @@
 import Head from 'next/head';
-
-import { MosaicExample } from 'src/components/examples/mosaic-example';
-
-// import { tarzan } from '../components/animations/tarzan';
-
-// import { feederOptions, FeedersKey } from '../hooks/feeders/feeder-options';
-
-// import { useEffect, useState } from 'react';
-// import { slider } from '../components/animations/sliders';
-// import { LinearExample } from '../components/examples/linear-example';
-// import { RandomExample } from '../components/examples/random-example';
-// import { WaveExample } from '../components/examples/waver-example';
-
-// const anims = {
-//   slider,
-//   tarzan,
-// };
-
-// type AnimsKeys = keyof typeof anims;
+import { Banner1 } from 'src/components/examples/banner-1';
 
 export default function Home() {
-  // const [selectedFeeder, setSelectedFeeder] = useState<FeedersKey>('linear');
-  // const [selectedAnim, setSelectedAnim] = useState<AnimsKeys>('slider');
-
   return (
     <>
       <Head>
@@ -32,36 +11,6 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="App">
-        {/* {(Object.keys(feederOptions) as FeedersKey[]).map((f) => (
-          <label key={f}>
-            {f}
-            <input
-              type="radio"
-              name="feeders"
-              checked={selectedFeeder === f}
-              value={f}
-              onChange={(e) => {
-                setSelectedFeeder(e.target.value as FeedersKey);
-              }}
-            />
-          </label>
-        ))}
-        <hr />
-
-        {(Object.keys(anims) as AnimsKeys[]).map((a) => (
-          <label key={a}>
-            {a}
-            <input
-              type="radio"
-              name="anims"
-              checked={selectedAnim === a}
-              value={a}
-              onChange={(e) => {
-                setSelectedAnim(e.target.value as AnimsKeys);
-              }}
-            />
-          </label>
-        ))} */}
         {/* <h2>Slider - randomFeeder</h2>
         {selectedFeeder === 'wave' && (
           <WaveExample selectedAnim={anims[selectedAnim]} />
@@ -74,7 +23,7 @@ export default function Home() {
           <RandomExample selectedAnim={anims[selectedAnim]} />
         )} */}
 
-        <MosaicExample />
+        <Banner1 />
       </div>
     </>
   );

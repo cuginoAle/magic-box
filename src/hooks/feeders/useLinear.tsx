@@ -6,13 +6,14 @@ import { FeederType } from './types';
 
 const useLinear = ({
   content,
-  showTileCount,
+  clusterSize = 1,
   interval,
+  onProgress,
 }: FeederProps): FeederType => {
   const [index, setIndex] = useState(0);
   const clustersRef = useRef(
     content.reduce((acc, value, index) => {
-      const clusterIndex = Math.floor(index / showTileCount);
+      const clusterIndex = Math.floor(index / clusterSize);
       if (!acc[clusterIndex]) {
         acc[clusterIndex] = [];
       }
@@ -23,7 +24,8 @@ const useLinear = ({
 
   const tick = useCallback(() => {
     setIndex(index + 1 === clustersRef.current.length ? 0 : index + 1);
-  }, [index]);
+    onProgress?.(((index + 1) / clustersRef.current.length) * 100);
+  }, [index, onProgress]);
 
   const feeder = useInterval(tick, interval);
 
