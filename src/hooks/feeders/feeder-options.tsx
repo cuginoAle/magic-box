@@ -10,7 +10,6 @@ type FeederProps = {
   content: ContentProps[];
   clusterSize?: number;
   interval: number;
-  delayBeforeNextLoop?: number;
   onProgress?: (progress: number) => void;
 };
 type Feeders = 'linear' | 'wave' | 'random';
@@ -36,7 +35,6 @@ const waveFeederOptions: ContentFeederProps = {
   content: dummyContent,
   interval: 250,
   clusterSize: 8,
-  delayBeforeNextLoop: 4000,
   type: 'linear',
 };
 

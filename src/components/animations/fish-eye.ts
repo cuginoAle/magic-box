@@ -19,19 +19,21 @@ const timing = {
   fill: 'forwards' as FillMode,
 };
 
-const fishEye: AnimType = (refs, delay = 0) => {
+const fishEye: AnimType = (refs, delayIn = 0, delayOut = 0) => {
   const animation: Animation[] = [];
 
   if (refs?.[1]) {
     refs[1].style.transformOrigin = '100% 100%';
     refs[1].style.transform = 'scale(1)';
-    animation.push(refs[1].animate(fishEye_out, { ...timing, delay }));
+    animation.push(
+      refs[1].animate(fishEye_out, { ...timing, delay: delayOut }),
+    );
   }
 
   if (refs?.[0]) {
     refs[0].style.transformOrigin = '0 0';
     refs[0].style.transform = 'scale(0)';
-    animation.push(refs[0].animate(fishEye_in, { ...timing, delay }));
+    animation.push(refs[0].animate(fishEye_in, { ...timing, delay: delayIn }));
   }
 
   return animation;

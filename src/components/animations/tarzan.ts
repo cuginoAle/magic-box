@@ -19,19 +19,19 @@ const timing = {
   fill: 'forwards' as FillMode,
 };
 
-const tarzan: AnimType = (refs, delay = 0) => {
+const tarzan: AnimType = (refs, delayIn = 0, delayOut = 0) => {
   const animation: Animation[] = [];
 
   if (refs?.[1]) {
     refs[1].style.transformOrigin = '100% 0';
     refs[1].style.transform = 'rotate(0deg)';
-    animation.push(refs[1].animate(tarzan_out, { ...timing, delay }));
+    animation.push(refs[1].animate(tarzan_out, { ...timing, delay: delayOut }));
   }
 
   if (refs?.[0]) {
     refs[0].style.transformOrigin = '0 0';
     refs[0].style.transform = 'rotate(90deg)';
-    animation.push(refs[0].animate(tarzan_in, { ...timing, delay }));
+    animation.push(refs[0].animate(tarzan_in, { ...timing, delay: delayIn }));
   }
 
   return animation;

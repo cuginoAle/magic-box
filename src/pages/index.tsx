@@ -1,5 +1,9 @@
 import Head from 'next/head';
-import { Banner1 } from 'src/components/examples/banner-1';
+import { sliderL } from 'src/components/animations/slider-L';
+import { tarzan } from 'src/components/animations/tarzan';
+import { BannerMosaic } from 'src/components/examples/banner-mosaic';
+import { BannerTarzan } from 'src/components/examples/banner-tarzan';
+import { WaveExample } from 'src/components/examples/waver-example';
 
 export default function Home() {
   return (
@@ -11,19 +15,21 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="App">
-        {/* <h2>Slider - randomFeeder</h2>
-        {selectedFeeder === 'wave' && (
-          <WaveExample selectedAnim={anims[selectedAnim]} />
-        )}
-        {selectedFeeder === 'linear' && (
-          <LinearExample selectedAnim={anims[selectedAnim]} />
-        )}
-
-        {selectedFeeder === 'random' && (
-          <RandomExample selectedAnim={anims[selectedAnim]} />
-        )} */}
-
-        <Banner1 />
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '100px',
+            maxWidth: '800px',
+          }}
+        >
+          <div style={{ maxWidth: '300px', margin: '0 auto' }}>
+            <WaveExample selectedAnim={tarzan} rows={2} cols={2} delay={1400} />
+          </div>
+          <BannerMosaic />
+          <WaveExample selectedAnim={sliderL} />
+          <BannerTarzan />
+        </div>
       </div>
     </>
   );

@@ -1,15 +1,40 @@
-import { feederOptions } from 'src/hooks/feeders/feeder-options';
 import { AnimatedTile } from '../animated-tile/animated-tile';
 import { TileGrid } from '../tile-grid/tile-grid';
 import { AnimType } from '../animations/types';
 
 import { useLinear } from 'src/hooks/feeders/useLinear';
+import React, { useEffect } from 'react';
+import { pictures } from 'src/data-stubs/content';
+import { Picture } from '../picture';
 
-const WaveExample = ({ selectedAnim }: { selectedAnim: AnimType }) => {
+const WaveExample = ({
+  selectedAnim,
+  rows = 2,
+  cols = 4,
+  delay = 2000,
+}: {
+  selectedAnim: AnimType;
+  rows?: number;
+  cols?: number;
+  delay?: number;
+}) => {
+  const firstRun = React.useRef(true);
+  const tileCount = rows * cols;
+
   const { tiles, feeder } = useLinear({
-    ...feederOptions.wave,
-    autoStart: true,
+    content: pictures.map((item, index) => ({
+      id: index.toString(),
+      content: (
+        <Picture style={{ aspectRatio: 1 }} key={item} src={item} alt="img" />
+      ),
+    })),
+    interval: firstRun.current ? 0 : delay * tileCount,
+    clusterSize: tileCount,
   });
+
+  useEffect(() => {
+    firstRun.current = false;
+  }, [tiles]);
 
   return (
     <TileGrid
@@ -19,11 +44,19 @@ const WaveExample = ({ selectedAnim }: { selectedAnim: AnimType }) => {
       onMouseLeave={() => {
         feeder.play();
       }}
+      rows={rows}
+      cols={cols}
     >
       {tiles.map((p, index) => {
         return (
-          <AnimatedTile key={index} animation={selectedAnim} tileId={p.id}>
-            {p.content}
+          <AnimatedTile
+            delayIn={(firstRun.current ? 0 : delay) * index}
+            delayOut={(firstRun.current ? 0 : delay) * index}
+            key={index}
+            animation={selectedAnim}
+            tileId={p.id}
+          >
+            {p.content as React.ReactElement}
           </AnimatedTile>
         );
       })}

@@ -48,13 +48,14 @@ const MosaicExample = ({ imageUrl, rows, cols }: Props) => {
     >
       <TileGrid rows={rows} cols={cols}>
         {images.map((p, index) => {
-          const delay = 20 * (Math.floor(index / rows) + (index % cols));
+          const delay = 40 * (Math.floor(index / rows) + (index % cols));
 
           return (
             <AnimatedTile
               key={index}
               animation={fishEye}
-              delay={delay}
+              delayIn={delay}
+              delayOut={delay}
               tileId={p.id}
             >
               {p.content}

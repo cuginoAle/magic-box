@@ -4,9 +4,8 @@ import { MosaicExample } from '../sub-components/mosaic-example';
 import { steak } from 'src/data-stubs/content';
 import { FeederProps } from 'src/hooks/feeders/feeder-options';
 import { AnimatedTile } from '../animated-tile/animated-tile';
-import { sliderL } from '../animations/slider-L';
-import { fishEye } from '../animations/fish-eye';
 import { sliderU } from '../animations/slider-U';
+import { fishEye } from '../animations/fish-eye';
 
 const rows = 5;
 const cols = 5;
@@ -26,14 +25,13 @@ const options: FeederProps = {
   },
 };
 
-const Banner1 = () => {
+const BannerMosaic = () => {
   const { tiles, feeder } = useLinear(options);
 
   return (
     <div
       className="shadow"
       style={{
-        maxWidth: '800px',
         display: 'flex',
         borderRadius: '5px',
         overflow: 'hidden',
@@ -48,19 +46,20 @@ const Banner1 = () => {
       <div
         style={{
           display: 'flex',
-          padding: '30px',
+          padding: '40px',
+          gap: '20px',
           flexDirection: 'column',
           backgroundColor: '#4a4a4a',
           background:
             'linear-gradient(122deg, rgba(74, 74, 74, 1) 0%, rgba(0, 0, 0, 1) 0%, rgba(94, 94, 94, 1) 100%)',
         }}
       >
-        <AnimatedTile delay={500} animation={sliderU} tileId={tiles[0].id}>
+        <AnimatedTile delayIn={0} animation={sliderU} tileId={tiles[0].id}>
           <h2 style={{ color: '#fff' }}>
             {(tiles[0]?.content as { title: string }).title}
           </h2>
         </AnimatedTile>
-        <AnimatedTile delay={500} animation={sliderU} tileId={tiles[0].id}>
+        <AnimatedTile animation={fishEye} tileId={tiles[0].id}>
           <p style={{ color: '#ccc', lineHeight: '1.5' }}>
             {(tiles[0]?.content as { body: string }).body}
           </p>
@@ -88,4 +87,4 @@ const Banner1 = () => {
   );
 };
 
-export { Banner1 };
+export { BannerMosaic };

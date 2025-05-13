@@ -24,19 +24,21 @@ const slider_out_timing = {
   fill: 'forwards' as FillMode,
 };
 
-const sliderL: AnimType = (refs, delay = 0) => {
+const sliderL: AnimType = (refs, delayIn = 0, delayOut = 0) => {
   const animation: Animation[] = [];
 
   if (refs?.[1]) {
-    refs[1].style.transformOrigin = '50%';
+    refs[1].style.transform = 'translateX(0) scale(1)';
     animation.push(
-      refs[1].animate(slider_out, { ...slider_out_timing, delay }),
+      refs[1].animate(slider_out, { ...slider_out_timing, delay: delayOut }),
     );
   }
 
   if (refs?.[0]) {
-    refs[0].style.transformOrigin = '50%';
-    animation.push(refs[0].animate(slider_in, { ...slider_in_timing, delay }));
+    refs[0].style.transform = 'translateX(-100%)';
+    animation.push(
+      refs[0].animate(slider_in, { ...slider_in_timing, delay: delayIn }),
+    );
   }
 
   return animation;

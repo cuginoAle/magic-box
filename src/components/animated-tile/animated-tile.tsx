@@ -13,14 +13,16 @@ type TileProps = {
   children: ReactElement;
   animation?: AnimType;
   tileId: string;
-  delay?: number;
+  delayIn?: number;
+  delayOut?: number;
 };
 
 const AnimatedTile = ({
   children,
   animation,
   tileId,
-  delay = 0,
+  delayIn = 0,
+  delayOut = 0,
 }: TileProps) => {
   const [removePrevItem, setRemovePrevItem] = useState(false);
   const prevAnims = useRef<Animation[]>([]);
@@ -56,7 +58,8 @@ const AnimatedTile = ({
             0,
             childrenStackRef.current.length,
           ),
-          delay,
+          delayIn,
+          delayOut,
         ) || [];
       prevAnims.current = anim;
 
