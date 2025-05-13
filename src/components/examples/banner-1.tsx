@@ -3,6 +3,10 @@ import { MosaicExample } from '../sub-components/mosaic-example';
 
 import { steak } from 'src/data-stubs/content';
 import { FeederProps } from 'src/hooks/feeders/feeder-options';
+import { AnimatedTile } from '../animated-tile/animated-tile';
+import { sliderL } from '../animations/slider-L';
+import { fishEye } from '../animations/fish-eye';
+import { sliderU } from '../animations/slider-U';
 
 const rows = 5;
 const cols = 5;
@@ -10,7 +14,11 @@ const cols = 5;
 const options: FeederProps = {
   content: steak.map((item, index) => ({
     id: index.toString(),
-    content: item,
+    content: {
+      image: item,
+      title: `The Ultimate Barbecue Guide`,
+      body: `Fire up the grill with our expert barbecuing tips from the M&S chefs, and discover this summer's grilling must-tries.`,
+    },
   })),
   interval: 5000,
   onProgress: (progress: number) => {
@@ -47,27 +55,32 @@ const Banner1 = () => {
             'linear-gradient(122deg, rgba(74, 74, 74, 1) 0%, rgba(0, 0, 0, 1) 0%, rgba(94, 94, 94, 1) 100%)',
         }}
       >
-        <h2 style={{ color: '#fff' }}>THE ULTIMATE BARBECUE GUIDE</h2>
-        <p style={{ color: '#ccc', lineHeight: '1.5' }}>
-          Fire up the grill with our expert barbecuing tips from the M&S chefs,
-          and discover this summer&apos;s grilling must-tries.
-        </p>
+        <AnimatedTile delay={500} animation={sliderU} tileId={tiles[0].id}>
+          <h2 style={{ color: '#fff' }}>
+            {(tiles[0]?.content as { title: string }).title}
+          </h2>
+        </AnimatedTile>
+        <AnimatedTile delay={500} animation={sliderU} tileId={tiles[0].id}>
+          <p style={{ color: '#ccc', lineHeight: '1.5' }}>
+            {(tiles[0]?.content as { body: string }).body}
+          </p>
+        </AnimatedTile>
       </div>
       <div
         style={{
-          width: `round(nearest, 50%, ${cols}px)`,
+          width: `round(up, 50%, ${cols}px)`,
           flexShrink: 0,
         }}
       >
         <div
           style={{
-            height: `round(nearest, 100%, ${cols}px)`,
+            height: `round(up, 100%, ${cols}px)`,
           }}
         >
           <MosaicExample
             rows={rows}
             cols={cols}
-            imageUrl={tiles[0].content as string}
+            imageUrl={(tiles[0]?.content as { image: string }).image}
           />
         </div>
       </div>

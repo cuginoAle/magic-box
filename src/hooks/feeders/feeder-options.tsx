@@ -3,7 +3,7 @@ import { dummyContent } from '../../data-stubs/content';
 
 type ContentProps = {
   id: string;
-  content: ReactNode;
+  content: ReactNode | Record<string, ReactNode>;
 };
 
 type FeederProps = {

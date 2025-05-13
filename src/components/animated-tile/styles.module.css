@@ -1,9 +1,10 @@
 .root {
   height: 100%;
+  position: relative;
   > div {
     height: 100%;
   }
-  > :nth-child(2) {
+  > :nth-child(1) {
     position: absolute;
     left: 0;
     top: 0;
