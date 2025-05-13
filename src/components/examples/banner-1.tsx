@@ -53,12 +53,23 @@ const Banner1 = () => {
           and discover this summer&apos;s grilling must-tries.
         </p>
       </div>
-      <div style={{ width: `round(nearest, 50%, ${cols}px)`, flexShrink: 0 }}>
-        <MosaicExample
-          rows={rows}
-          cols={cols}
-          imageUrl={tiles[0].content as string}
-        />
+      <div
+        style={{
+          width: `round(nearest, 50%, ${cols}px)`,
+          flexShrink: 0,
+        }}
+      >
+        <div
+          style={{
+            height: `round(nearest, 100%, ${cols}px)`,
+          }}
+        >
+          <MosaicExample
+            rows={rows}
+            cols={cols}
+            imageUrl={tiles[0].content as string}
+          />
+        </div>
       </div>
     </div>
   );
