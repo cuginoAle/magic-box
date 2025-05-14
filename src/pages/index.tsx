@@ -24,10 +24,16 @@ export default function Home() {
           }}
         >
           <div style={{ maxWidth: '300px', margin: '0 auto' }}>
-            <WaveExample selectedAnim={tarzan} rows={2} cols={2} delay={1400} />
+            <WaveExample
+              selectedAnim={tarzan}
+              rows={2}
+              cols={4}
+              delay={2000}
+              animDelay={100}
+            />
           </div>
           <BannerMosaic />
-          <WaveExample selectedAnim={sliderL} />
+          <WaveExample selectedAnim={sliderL} animDelay={1200} delay={0} />
           <BannerTarzan />
         </div>
       </div>

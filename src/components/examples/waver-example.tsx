@@ -12,11 +12,13 @@ const WaveExample = ({
   rows = 2,
   cols = 4,
   delay = 2000,
+  animDelay = 100,
 }: {
   selectedAnim: AnimType;
   rows?: number;
   cols?: number;
   delay?: number;
+  animDelay?: number;
 }) => {
   const firstRun = React.useRef(true);
   const tileCount = rows * cols;
@@ -28,7 +30,7 @@ const WaveExample = ({
         <Picture style={{ aspectRatio: 1 }} key={item} src={item} alt="img" />
       ),
     })),
-    interval: firstRun.current ? 0 : delay * tileCount,
+    interval: firstRun.current ? 0 : animDelay * tileCount + delay,
     clusterSize: tileCount,
   });
 
@@ -50,8 +52,8 @@ const WaveExample = ({
       {tiles.map((p, index) => {
         return (
           <AnimatedTile
-            delayIn={(firstRun.current ? 0 : delay) * index}
-            delayOut={(firstRun.current ? 0 : delay) * index}
+            delayIn={(firstRun.current ? 0 : animDelay) * index}
+            delayOut={(firstRun.current ? 0 : animDelay) * index}
             key={index}
             animation={selectedAnim}
             tileId={p.id}
