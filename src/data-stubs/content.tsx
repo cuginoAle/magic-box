@@ -1,6 +1,3 @@
-import { Picture } from '../components/picture';
-import { ContentProps } from '../hooks/feeders/feeder-options';
-
 const pictures = [
   'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8Zm9vZHxlbnwwfHwwfHx8MA%3D%3D',
   'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8Zm9vZHxlbnwwfDJ8MHx8fDA%3D',
@@ -26,16 +23,5 @@ const steak = [
   'https://images.unsplash.com/photo-1551782450-a2132b4ba21d?q=80&w=400&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
   'https://images.unsplash.com/photo-1622715395504-2a802893a0f9?q=80&w=400&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
 ];
-const dummyContent: ContentProps[] = pictures.map((p, i) => ({
-  id: 'c' + i,
-  content:
-    (i + 1) % 23 === 0 ? (
-      <div style={{ height: '100%', backgroundColor: 'white' }}>
-        Some content {i}
-      </div>
-    ) : (
-      <Picture alt="" src={p} />
-    ),
-}));
 
-export { pictures, dummyContent, steak };
+export { pictures, steak };

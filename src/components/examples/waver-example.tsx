@@ -24,10 +24,15 @@ const WaveExample = ({
   const tileCount = rows * cols;
 
   const { tiles, feeder } = useLinear({
-    content: pictures.map((item, index) => ({
+    content: pictures.slice(0, tileCount * 2).map((item, index) => ({
       id: index.toString(),
       content: (
-        <Picture style={{ aspectRatio: 1 }} key={item} src={item} alt="img" />
+        <Picture
+          style={{ aspectRatio: 1 }}
+          key={item}
+          src={item.replace('w=400', 'w=300')}
+          alt="img"
+        />
       ),
     })),
     interval: firstRun.current ? 0 : animDelay * tileCount + delay,

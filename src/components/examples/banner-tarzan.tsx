@@ -8,6 +8,8 @@ import { Picture } from '../picture';
 import { tarzan } from '../animations/tarzan';
 import { sliderD } from '../animations/slider-D';
 import { fade } from '../animations/fade';
+import { useCallback, useRef, useState } from 'react';
+import { Progress } from '../progress';
 
 const options: FeederProps = {
   content: steak.reverse().map((item, index) => ({
@@ -15,7 +17,7 @@ const options: FeederProps = {
     content: {
       image: item,
       title: `The Ultimate Barbecue Guide`,
-      body: `Fire up the grill with our expert barbecuing tips from the M&S chefs, and discover this summer's grilling must-tries.`,
+      body: `Fire up the grill with our expert barbecuing tips from our chefs, and discover this summer's grilling must-tries.`,
     },
   })),
   interval: 5000,
@@ -25,7 +27,26 @@ const options: FeederProps = {
 };
 
 const BannerTarzan = () => {
-  const { tiles, feeder } = useLinear(options);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+
+  const next = useCallback(() => {
+    setCurrentIndex((prev) => {
+      if (prev + 1 >= options.content.length) {
+        return 0;
+      }
+      return prev + 1;
+    });
+  }, []);
+
+  const previous = useCallback(() => {
+    setCurrentIndex((prev) => {
+      if (prev - 1 < 0) {
+        return options.content.length - 1;
+      }
+      return prev - 1;
+    });
+  }, []);
 
   return (
     <div
@@ -34,12 +55,13 @@ const BannerTarzan = () => {
         display: 'flex',
         borderRadius: '5px',
         overflow: 'hidden',
+        position: 'relative',
       }}
       onMouseEnter={() => {
-        feeder.clear();
+        setIsPaused(true);
       }}
       onMouseLeave={() => {
-        feeder.play();
+        setIsPaused(false);
       }}
     >
       <div
@@ -50,13 +72,15 @@ const BannerTarzan = () => {
           overflow: 'hidden',
         }}
       >
-        <AnimatedTile animation={tarzan} tileId={tiles[0].id}>
+        <AnimatedTile
+          animation={tarzan}
+          tileId={options.content[currentIndex].id}
+        >
           <div style={{ height: '100%', maxHeight: '100%' }}>
             <Picture
-              src={(tiles[0]?.content as { image: string }).image.replace(
-                'w=400',
-                'w=600',
-              )}
+              src={(
+                options.content[currentIndex]?.content as { image: string }
+              ).image.replace('w=400', 'w=600')}
               alt="img"
               style={{ aspectRatio: 2 }}
             />
@@ -75,20 +99,67 @@ const BannerTarzan = () => {
             'linear-gradient(122deg, rgba(74, 74, 74, 1) 0%, rgba(0, 0, 0, 1) 0%, rgba(94, 94, 94, 1) 100%)',
         }}
       >
-        <AnimatedTile delayOut={250} animation={sliderU} tileId={tiles[0].id}>
+        <AnimatedTile
+          delayOut={250}
+          animation={sliderU}
+          tileId={options.content[currentIndex].id}
+        >
           <h2 style={{ color: '#fff' }}>
-            {(tiles[0]?.content as { title: string }).title}
+            {
+              (options.content[currentIndex]?.content as { title: string })
+                .title
+            }
           </h2>
         </AnimatedTile>
-        <AnimatedTile delayIn={0} animation={fade} tileId={tiles[0].id}>
+        <AnimatedTile
+          delayIn={0}
+          animation={fade}
+          tileId={options.content[currentIndex].id}
+        >
           <p style={{ color: '#ccc', lineHeight: '1.5' }}>
-            {(tiles[0]?.content as { body: string }).body}
+            {(options.content[currentIndex]?.content as { body: string }).body}
           </p>
         </AnimatedTile>
 
-        <AnimatedTile animation={sliderD} tileId={tiles[0].id}>
+        <AnimatedTile
+          animation={sliderD}
+          tileId={options.content[currentIndex].id}
+        >
           <button>Read more</button>
         </AnimatedTile>
+      </div>
+      <div
+        style={{
+          position: 'absolute',
+          bottom: '5px',
+          right: '5px',
+          display: 'flex',
+          gap: '5px',
+          alignItems: 'center',
+        }}
+      >
+        <button className="navButton" onClick={previous}>
+          &#8249;
+        </button>
+        <div
+          style={{
+            position: 'absolute',
+            left: '50%',
+            top: '50%',
+            marginLeft: '-10px',
+            marginTop: '-10px',
+          }}
+        >
+          <Progress
+            isRunning={!isPaused}
+            interval={options.interval}
+            size={20}
+            onComplete={next}
+          />
+        </div>
+        <button className="navButton" onClick={next}>
+          &#8250;
+        </button>
       </div>
     </div>
   );

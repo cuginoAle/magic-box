@@ -23,18 +23,119 @@ export default function Home() {
             maxWidth: '800px',
           }}
         >
-          <div style={{ maxWidth: '300px', margin: '0 auto' }}>
-            <WaveExample
-              selectedAnim={tarzan}
-              rows={2}
-              cols={4}
-              delay={2000}
-              animDelay={100}
-            />
+          <img
+            src={'pictures/loop.webp'}
+            alt="logo"
+            style={{ width: '600px', display: 'block' }}
+          />
+
+          <div
+            style={{
+              maxWidth: '600px',
+              display: 'flex',
+              gap: '20px',
+              flexDirection: 'column',
+            }}
+          >
+            <h2>Image carousel - tarzan</h2>
+            <div style={{ position: 'relative' }}>
+              <WaveExample
+                selectedAnim={tarzan}
+                rows={2}
+                cols={3}
+                delay={2000}
+                animDelay={100}
+              />
+
+              <div
+                style={{
+                  position: 'absolute',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  zIndex: 2,
+                  inset: 0,
+                  textShadow: '0 1px 5px rgba(0, 0, 0, 0.5)',
+                  backgroundColor: 'rgba(0, 0, 0, 0.3)',
+                }}
+              >
+                <h2
+                  style={{
+                    color: 'white',
+                    textAlign: 'center',
+                  }}
+                >
+                  <em
+                    style={{
+                      borderBottom: '5px solid',
+                      fontStyle: 'normal',
+                      fontFamily:
+                        '"MS Market Bold", var(--type-backup-backup-family)',
+                      fontSize: '1em',
+                      verticalAlign: 'top',
+                      lineHeight: '1.2',
+                      letterSpacing: '.075em',
+                      fontWeight: 800,
+                    }}
+                  >
+                    WE ARE
+                  </em>
+                  <span
+                    style={{
+                      display: 'block',
+                      fontSize: '90px',
+                      fontWeight: 800,
+                      margin: '20px 0',
+                    }}
+                  >
+                    SUMMER
+                  </span>
+                  <span
+                    style={{
+                      display: 'inline-block',
+                      border: '3px solid',
+                      padding: '10px 20px',
+                      fontSize: '36px',
+                    }}
+                  >
+                    LOVING
+                  </span>
+                </h2>
+              </div>
+            </div>
           </div>
-          <BannerMosaic />
-          <WaveExample selectedAnim={sliderL} animDelay={1200} delay={0} />
-          <BannerTarzan />
+          <div
+            style={{
+              display: 'flex',
+              gap: '20px',
+              flexDirection: 'column',
+            }}
+          >
+            <h2>Banner - mosaic</h2>
+            <BannerMosaic />
+          </div>
+          <div
+            style={{
+              display: 'flex',
+              maxWidth: '400px',
+              gap: '20px',
+              flexDirection: 'column',
+            }}
+          >
+            <h2>Image carousel - slider</h2>
+            <WaveExample selectedAnim={sliderL} animDelay={1200} delay={0} />
+          </div>
+
+          <div
+            style={{
+              display: 'flex',
+              gap: '20px',
+              flexDirection: 'column',
+            }}
+          >
+            <h2>Banner - tarzan</h2>
+            <BannerTarzan />
+          </div>
         </div>
       </div>
     </>

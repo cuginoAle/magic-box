@@ -16,7 +16,7 @@ const options: FeederProps = {
     content: {
       image: item,
       title: `The Ultimate Barbecue Guide`,
-      body: `Fire up the grill with our expert barbecuing tips from the M&S chefs, and discover this summer's grilling must-tries.`,
+      body: `Fire up the grill with our expert barbecuing tips from our chefs, and discover this summer's grilling must-tries.`,
     },
   })),
   interval: 5000,
@@ -73,7 +73,7 @@ const BannerMosaic = () => {
       >
         <div
           style={{
-            height: `round(up, 100%, ${cols}px)`,
+            height: `round(up, 100%, ${rows}px)`,
           }}
         >
           <MosaicExample
